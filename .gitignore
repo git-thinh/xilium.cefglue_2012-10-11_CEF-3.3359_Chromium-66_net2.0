@@ -136,3 +136,8 @@ CefGlue/bin/Debug/Xilium.CefGlue.dll
 CefGlue.Demo/obj/Debug/Xilium.CefGlue.Demo.dll
 CefGlue.Demo/bin/Debug/Xilium.CefGlue.dll
 CefGlue.Demo/bin/Debug/Xilium.CefGlue.Demo.dll
+Debugx86/VideoDecodeStats/MANIFEST-000001
+Debugx86/VideoDecodeStats/LOG
+Debugx86/VideoDecodeStats/LOCK
+Debugx86/VideoDecodeStats/CURRENT
+Debugx86/VideoDecodeStats/000003.log
