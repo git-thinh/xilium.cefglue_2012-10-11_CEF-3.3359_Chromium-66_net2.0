@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{311984DF-EB92-4B01-B4AD-C7E73A13E271}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xilium.CefGlue.Client</RootNamespace>
+    <AssemblyName>Xilium.CefGlue.Client</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debugx86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Debugx86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DemoApp.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetWindowPosFlags.cs" />
+    <Compile Include="System.Linq\DeepCopy.Assign.cs" />
+    <Compile Include="System.Linq\IsNumber.cs" />
+    <Compile Include="System.Linq\LinqExt.cs" />
+    <Compile Include="System.Linq\Lucene.Net.cs" />
+    <Compile Include="System.Linq\System.Collections.Generic\HashSet.cs" />
+    <Compile Include="System.Linq\System.Collections.Generic\ISet.cs" />
+    <Compile Include="System.Linq\System.Data.Linq\MonoTODOAttribute.cs" />
+    <Compile Include="System.Linq\System.Linq.Dynamic\System.Linq.Dynamic.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\BinaryExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ConditionalExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ConstantExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ElementInit.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\EmitContext.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\Expression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ExpressionPrinter.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ExpressionTransformer.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ExpressionType.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ExpressionVisitor.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\Expression_T.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\Extensions.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\InvocationExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\LambdaExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ListInitExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\MemberAssignment.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\MemberBinding.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\MemberBindingType.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\MemberExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\MemberInitExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\MemberListBinding.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\MemberMemberBinding.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\MethodCallExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\NewArrayExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\NewExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\ParameterExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\TypeBinaryExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Expressions\UnaryExpression.cs" />
+    <Compile Include="System.Linq\System.Linq.Ext.cs" />
+    <Compile Include="System.Linq\System.Linq\Check.cs" />
+    <Compile Include="System.Linq\System.Linq\Enumerable.cs" />
+    <Compile Include="System.Linq\System.Linq\Grouping.cs" />
+    <Compile Include="System.Linq\System.Linq\IGrouping.cs" />
+    <Compile Include="System.Linq\System.Linq\ILookup_T.cs" />
+    <Compile Include="System.Linq\System.Linq\IOrderedEnumerable_T.cs" />
+    <Compile Include="System.Linq\System.Linq\IOrderedQueryable.cs" />
+    <Compile Include="System.Linq\System.Linq\IOrderedQueryable_T.cs" />
+    <Compile Include="System.Linq\System.Linq\IQueryable.cs" />
+    <Compile Include="System.Linq\System.Linq\IQueryable_T.cs" />
+    <Compile Include="System.Linq\System.Linq\IQueryProvider.cs" />
+    <Compile Include="System.Linq\System.Linq\Lookup.cs" />
+    <Compile Include="System.Linq\System.Linq\OrderedEnumerable.cs" />
+    <Compile Include="System.Linq\System.Linq\OrderedSequence.cs" />
+    <Compile Include="System.Linq\System.Linq\Queryable.cs" />
+    <Compile Include="System.Linq\System.Linq\QueryableEnumerable.cs" />
+    <Compile Include="System.Linq\System.Linq\QueryableTransformer.cs" />
+    <Compile Include="System.Linq\System.Linq\QuickSort.cs" />
+    <Compile Include="System.Linq\System.Linq\SortContext.cs" />
+    <Compile Include="System.Linq\System.Linq\SortDirection.cs" />
+    <Compile Include="System.Linq\System.Linq\SortSequenceContext.cs" />
+    <Compile Include="System.Linq\System.Runtime.CompilerServices\DynamicAttribute.cs" />
+    <Compile Include="System.Linq\System.Runtime.CompilerServices\ExecutionScope.cs" />
+    <Compile Include="System.Linq\System.Runtime.CompilerServices\ExtensionAttribute.cs" />
+    <Compile Include="System.Linq\System.Runtime.CompilerServices\IStrongBox.cs" />
+    <Compile Include="System.Linq\System.Runtime.CompilerServices\StrongBox_T.cs" />
+    <Compile Include="System.Linq\System\Action.cs" />
+    <Compile Include="System.Linq\System\Func.cs" />
+    <Compile Include="System.Linq\Tuple\IStructuralComparable.cs" />
+    <Compile Include="System.Linq\Tuple\IStructuralEquatable.cs" />
+    <Compile Include="System.Linq\Tuple\Tuple.cs" />
+    <Compile Include="ToolStripSpringTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CefGlue.WindowsForms\CefGlue.WindowsForms.csproj">
+      <Project>{679AF14D-8FF5-4608-BFF8-EC1A7DED04A4}</Project>
+      <Name>CefGlue.WindowsForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CefGlue\CefGlue.csproj">
+      <Project>{703FF300-34B9-48D4-A5D6-E741F48D5F95}</Project>
+      <Name>CefGlue</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

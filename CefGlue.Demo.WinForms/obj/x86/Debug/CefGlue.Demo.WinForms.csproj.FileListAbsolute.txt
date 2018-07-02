@@ -1,0 +1,10 @@
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\Debugx86\Xilium.CefGlue.Demo.WinForms.exe.config
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\Debugx86\Xilium.CefGlue.Demo.WinForms.exe
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\Debugx86\Xilium.CefGlue.Demo.WinForms.pdb
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\CefGlue.Demo.WinForms\obj\x86\Debug\CefGlue.Demo.WinForms.csprojResolveAssemblyReference.cache
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\CefGlue.Demo.WinForms\obj\x86\Debug\Xilium.CefGlue.Demo.Properties.Resources.resources
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\CefGlue.Demo.WinForms\obj\x86\Debug\Xilium.CefGlue.Demo.WebNavigationBox.resources
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\CefGlue.Demo.WinForms\obj\x86\Debug\CefGlue.Demo.WinForms.csproj.GenerateResource.Cache
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\CefGlue.Demo.WinForms\obj\x86\Debug\CefGlue.Demo.WinForms.csproj.CoreCompileInputs.cache
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\CefGlue.Demo.WinForms\obj\x86\Debug\Xilium.CefGlue.Demo.WinForms.exe
+C:\_CS\CefGlue\xilium-xilium.cefglue-dd82bd7d3c80\CefGlue.Demo.WinForms\obj\x86\Debug\Xilium.CefGlue.Demo.WinForms.pdb
