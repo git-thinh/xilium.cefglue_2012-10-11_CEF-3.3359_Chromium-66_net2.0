@@ -54,6 +54,8 @@
     <Compile Include="Browser\WebRequestHandler.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Renderer\DemoRenderProcessHandler.cs" />
+    <Compile Include="RequestHandler\TestDumpRequestHandlerFactory.cs" />
+    <Compile Include="RequestHandler\TestDumpRequestHandler.cs" />
     <Compile Include="SchemeHandler\DumpRequestResourceHandler.cs" />
     <Compile Include="SchemeHandler\DemoAppSchemeHandlerFactory.cs" />
     <Compile Include="Common\DemoBrowserProcessHandler.cs" />

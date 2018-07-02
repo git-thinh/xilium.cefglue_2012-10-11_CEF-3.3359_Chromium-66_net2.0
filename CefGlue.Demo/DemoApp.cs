@@ -41,7 +41,8 @@
         public string Name { get { return "Xilium CefGlue Demo"; } }
         public int DefaultWidth { get { return 800; } }
         public int DefaultHeight { get { return 600; } }
-        public string HomeUrl { get { return "http://google.com"; } }
+        //public string HomeUrl { get { return "http://google.com"; } }
+        public string HomeUrl { get { return "https://dictionary.cambridge.org/grammar/british-grammar/modals-and-modality/would"; } }
 
         protected IMainView MainView { get { return _mainView; } }
 
@@ -240,6 +241,7 @@
         {
             // register custom scheme handler
             CefRuntime.RegisterSchemeHandlerFactory("http", DumpRequestDomain, new DemoAppSchemeHandlerFactory());
+            //CefRuntime.RegisterSchemeHandlerFactory("http", DumpRequestDomain, new TestDumpRequestHandlerFactory());
             // CefRuntime.AddCrossOriginWhitelistEntry("http://localhost", "http", "", true);
 
         }
