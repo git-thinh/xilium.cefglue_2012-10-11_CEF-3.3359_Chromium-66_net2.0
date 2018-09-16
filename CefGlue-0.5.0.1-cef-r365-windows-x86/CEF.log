@@ -1,0 +1,7 @@
+[0702/210429:ERROR:ssl_client_socket_nss.cc(1511)] handshake with server dictionary.cambridge.org:443 failed; NSS error code -5961, net_error -101
+[0702/212021:INFO:SkGlyphCache.cpp(652)] purging 301K from font cache [5 entries]
+
+[0702/212022:INFO:SkGlyphCache.cpp(652)] purging 297K from font cache [5 entries]
+
+[0702/212024:INFO:SkGlyphCache.cpp(652)] purging 276K from font cache [5 entries]
+

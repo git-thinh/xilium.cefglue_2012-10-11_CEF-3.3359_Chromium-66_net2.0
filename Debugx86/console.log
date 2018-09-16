@@ -1,0 +1,370 @@
+Level: Warn
+Message: Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/_.txt
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: HOST: http://192.168.0.103:60000/
+Source: http://localhost:60000/index.html
+Line: 40
+-----------------------
+Level: Info
+Message: http://192.168.0.103:60000/app.js
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: http://192.168.0.103:60000/ ----> blob:http://localhost:60000/06e06bc8-560b-44a6-ac5d-1d6f4f439886
+Source: http://localhost:60000/index.html
+Line: 51
+-----------------------
+Level: Info
+Message: APP
+Source: blob:http://localhost:60000/06e06bc8-560b-44a6-ac5d-1d6f4f439886
+Line: 123
+-----------------------
+Level: Info
+Message: http://192.168.0.103:60000/lib/underscore.min.js
+Source: blob:http://localhost:60000/06e06bc8-560b-44a6-ac5d-1d6f4f439886
+Line: 70
+-----------------------
+Level: Info
+Message: http://192.168.0.103:60000/api.js
+Source: blob:http://localhost:60000/06e06bc8-560b-44a6-ac5d-1d6f4f439886
+Line: 70
+-----------------------
+Level: Info
+Message: API -> APP_INFO
+Source: blob:http://localhost:60000/198106d9-77b4-4919-ab7d-8d1a760dd7c7
+Line: 203
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/198106d9-77b4-4919-ab7d-8d1a760dd7c7
+Line: 206
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/198106d9-77b4-4919-ab7d-8d1a760dd7c7
+Line: 206
+-----------------------
+Level: Warn
+Message: Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/_.txt
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: HOST: https://raw.githubusercontent.com/git-thinh/appui/master/
+Source: http://localhost:60000/index.html
+Line: 40
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/app.js
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/ ----> blob:http://localhost:60000/308740fd-407e-4a5a-849a-f36c60ae48a5
+Source: http://localhost:60000/index.html
+Line: 51
+-----------------------
+Level: Info
+Message: APP
+Source: blob:http://localhost:60000/308740fd-407e-4a5a-849a-f36c60ae48a5
+Line: 112
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/lib/underscore.min.js
+Source: blob:http://localhost:60000/308740fd-407e-4a5a-849a-f36c60ae48a5
+Line: 68
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/api.js
+Source: blob:http://localhost:60000/308740fd-407e-4a5a-849a-f36c60ae48a5
+Line: 68
+-----------------------
+Level: Warn
+Message: Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/_.txt
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: HOST: https://raw.githubusercontent.com/git-thinh/appui/master/
+Source: http://localhost:60000/index.html
+Line: 40
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/app.js
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/ ----> blob:http://localhost:60000/e7cc0004-3d1a-4398-a40b-956c652c945b
+Source: http://localhost:60000/index.html
+Line: 51
+-----------------------
+Level: Info
+Message: APP
+Source: blob:http://localhost:60000/e7cc0004-3d1a-4398-a40b-956c652c945b
+Line: 112
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/lib/underscore.min.js
+Source: blob:http://localhost:60000/e7cc0004-3d1a-4398-a40b-956c652c945b
+Line: 68
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/api.js
+Source: blob:http://localhost:60000/e7cc0004-3d1a-4398-a40b-956c652c945b
+Line: 68
+-----------------------
+Level: Info
+Message: API -> APP_INFO
+Source: blob:http://localhost:60000/8946b65f-d63d-49d4-a741-b9799224f196
+Line: 190
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/8946b65f-d63d-49d4-a741-b9799224f196
+Line: 193
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/8946b65f-d63d-49d4-a741-b9799224f196
+Line: 193
+-----------------------
+Level: Warn
+Message: Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/_.txt
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: HOST: https://raw.githubusercontent.com/git-thinh/appui/master/
+Source: http://localhost:60000/index.html
+Line: 40
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/app.js
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/ ----> blob:http://localhost:60000/5eabda52-5f74-4023-9a8b-2d7ef1c0ec58
+Source: http://localhost:60000/index.html
+Line: 51
+-----------------------
+Level: Info
+Message: APP
+Source: blob:http://localhost:60000/5eabda52-5f74-4023-9a8b-2d7ef1c0ec58
+Line: 112
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/lib/underscore.min.js
+Source: blob:http://localhost:60000/5eabda52-5f74-4023-9a8b-2d7ef1c0ec58
+Line: 68
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/api.js
+Source: blob:http://localhost:60000/5eabda52-5f74-4023-9a8b-2d7ef1c0ec58
+Line: 68
+-----------------------
+Level: Info
+Message: API -> APP_INFO
+Source: blob:http://localhost:60000/64e543fb-a0f2-4fb5-9057-ce76078a1854
+Line: 190
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/64e543fb-a0f2-4fb5-9057-ce76078a1854
+Line: 193
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/64e543fb-a0f2-4fb5-9057-ce76078a1854
+Line: 193
+-----------------------
+Level: Warn
+Message: Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/_.txt
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: HOST: https://raw.githubusercontent.com/git-thinh/appui/master/
+Source: http://localhost:60000/index.html
+Line: 40
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/app.js
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/ ----> blob:http://localhost:60000/85ad156a-3800-4411-930b-9647015cf174
+Source: http://localhost:60000/index.html
+Line: 51
+-----------------------
+Level: Info
+Message: APP
+Source: blob:http://localhost:60000/85ad156a-3800-4411-930b-9647015cf174
+Line: 112
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/lib/underscore.min.js
+Source: blob:http://localhost:60000/85ad156a-3800-4411-930b-9647015cf174
+Line: 68
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/api.js
+Source: blob:http://localhost:60000/85ad156a-3800-4411-930b-9647015cf174
+Line: 68
+-----------------------
+Level: Info
+Message: API -> APP_INFO
+Source: blob:http://localhost:60000/df15ad41-2d48-41f2-8274-19beea7f9c40
+Line: 190
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/df15ad41-2d48-41f2-8274-19beea7f9c40
+Line: 193
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/df15ad41-2d48-41f2-8274-19beea7f9c40
+Line: 193
+-----------------------
+Level: Warn
+Message: Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/_.txt
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: HOST: https://raw.githubusercontent.com/git-thinh/appui/master/
+Source: http://localhost:60000/index.html
+Line: 40
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/app.js
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/ ----> blob:http://localhost:60000/609b57d7-e0e8-4a7d-8995-e93b669ed21a
+Source: http://localhost:60000/index.html
+Line: 51
+-----------------------
+Level: Info
+Message: APP
+Source: blob:http://localhost:60000/609b57d7-e0e8-4a7d-8995-e93b669ed21a
+Line: 112
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/lib/underscore.min.js
+Source: blob:http://localhost:60000/609b57d7-e0e8-4a7d-8995-e93b669ed21a
+Line: 68
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/api.js
+Source: blob:http://localhost:60000/609b57d7-e0e8-4a7d-8995-e93b669ed21a
+Line: 68
+-----------------------
+Level: Info
+Message: API -> APP_INFO
+Source: blob:http://localhost:60000/116692d0-c2fc-4fc9-867c-1058c99cf55f
+Line: 190
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/116692d0-c2fc-4fc9-867c-1058c99cf55f
+Line: 193
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/116692d0-c2fc-4fc9-867c-1058c99cf55f
+Line: 193
+-----------------------
+Level: Warn
+Message: Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/_.txt
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: HOST: https://raw.githubusercontent.com/git-thinh/appui/master/
+Source: http://localhost:60000/index.html
+Line: 40
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/app.js
+Source: http://localhost:60000/index.html
+Line: 9
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/ ----> blob:http://localhost:60000/458489dc-000b-44c0-b9ee-968db20e093a
+Source: http://localhost:60000/index.html
+Line: 51
+-----------------------
+Level: Info
+Message: APP
+Source: blob:http://localhost:60000/458489dc-000b-44c0-b9ee-968db20e093a
+Line: 112
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/lib/underscore.min.js
+Source: blob:http://localhost:60000/458489dc-000b-44c0-b9ee-968db20e093a
+Line: 68
+-----------------------
+Level: Info
+Message: https://raw.githubusercontent.com/git-thinh/appui/master/api.js
+Source: blob:http://localhost:60000/458489dc-000b-44c0-b9ee-968db20e093a
+Line: 68
+-----------------------
+Level: Info
+Message: API -> APP_INFO
+Source: blob:http://localhost:60000/a6f37d49-a031-432a-8856-0d36e4c92d43
+Line: 190
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/a6f37d49-a031-432a-8856-0d36e4c92d43
+Line: 193
+-----------------------
+Level: Info
+Message: API -> CACHE_URI
+Source: blob:http://localhost:60000/a6f37d49-a031-432a-8856-0d36e4c92d43
+Line: 193
+-----------------------

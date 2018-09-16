@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefGlue", "CefGlue\CefGlue.csproj", "{703FF300-34B9-48D4-A5D6-E741F48D5F95}"
 EndProject
@@ -12,6 +12,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefGlue.Demo", "CefGlue.Demo\CefGlue.Demo.csproj", "{B928A030-E818-4634-9C6B-F9224E996BD6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefGlue.Demo.WinForms", "CefGlue.Demo.WinForms\CefGlue.Demo.WinForms.csproj", "{F9025CE1-2DF4-409B-8961-A51DFAEAABDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo", "demo\demo.csproj", "{19CF2A09-323B-427C-9DC3-A471D85D4684}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OffScreenDemo", "OffScreenDemo\OffScreenDemo.csproj", "{72098366-3503-461E-9A87-C86B1BDF00AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefGlue.WindowsForms.Test", "CefGlue.WindowsForms.Test\CefGlue.WindowsForms.Test.csproj", "{28753C2C-C574-4BD8-BCCE-93239F1BA44C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +67,28 @@ Global
 		{F9025CE1-2DF4-409B-8961-A51DFAEAABDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9025CE1-2DF4-409B-8961-A51DFAEAABDD}.Release|x86.ActiveCfg = Release|x86
 		{F9025CE1-2DF4-409B-8961-A51DFAEAABDD}.Release|x86.Build.0 = Release|x86
+		{19CF2A09-323B-427C-9DC3-A471D85D4684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19CF2A09-323B-427C-9DC3-A471D85D4684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19CF2A09-323B-427C-9DC3-A471D85D4684}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{19CF2A09-323B-427C-9DC3-A471D85D4684}.Debug|x86.Build.0 = Debug|Any CPU
+		{19CF2A09-323B-427C-9DC3-A471D85D4684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19CF2A09-323B-427C-9DC3-A471D85D4684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19CF2A09-323B-427C-9DC3-A471D85D4684}.Release|x86.ActiveCfg = Release|Any CPU
+		{19CF2A09-323B-427C-9DC3-A471D85D4684}.Release|x86.Build.0 = Release|Any CPU
+		{72098366-3503-461E-9A87-C86B1BDF00AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72098366-3503-461E-9A87-C86B1BDF00AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72098366-3503-461E-9A87-C86B1BDF00AC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{72098366-3503-461E-9A87-C86B1BDF00AC}.Debug|x86.Build.0 = Debug|Any CPU
+		{72098366-3503-461E-9A87-C86B1BDF00AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72098366-3503-461E-9A87-C86B1BDF00AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72098366-3503-461E-9A87-C86B1BDF00AC}.Release|x86.ActiveCfg = Release|Any CPU
+		{72098366-3503-461E-9A87-C86B1BDF00AC}.Release|x86.Build.0 = Release|Any CPU
+		{28753C2C-C574-4BD8-BCCE-93239F1BA44C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{28753C2C-C574-4BD8-BCCE-93239F1BA44C}.Debug|x86.ActiveCfg = Debug|x86
+		{28753C2C-C574-4BD8-BCCE-93239F1BA44C}.Debug|x86.Build.0 = Debug|x86
+		{28753C2C-C574-4BD8-BCCE-93239F1BA44C}.Release|Any CPU.ActiveCfg = Release|x86
+		{28753C2C-C574-4BD8-BCCE-93239F1BA44C}.Release|x86.ActiveCfg = Release|x86
+		{28753C2C-C574-4BD8-BCCE-93239F1BA44C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
