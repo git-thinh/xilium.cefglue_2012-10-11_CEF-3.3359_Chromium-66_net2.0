@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Visiting the DOM with CefGlue | Joel Verhagen</title>
+  <link rel="stylesheet" href="/css/normalize.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/pygments.css" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <div id="header-wrapper">
+    <header>
+      <h1><a href="/">Joel Verhagen</a></h1>
+      <p>a computer programming blog</p>
+    </header>
+  </div>
+  <div id="page">
+    <div id="main">
+      <div id="side-column">
+        <aside id="short-bio" class="light-background round-top border-top">
+          <a href="/"><img width="175" height="175" src="https://www.gravatar.com/avatar/c136b026be4668d46ce5eb4dee155df1?s=175" alt="Joel Verhagen" /></a>
+          <p>I am a software developer at Microsoft, working on <a href="https://www.nuget.org/">NuGet</a>, the .NET package manager.</p>
+          <p>I am currently employed full-time, but if you are interested in my work history or skill set, take a look at my <a href="/attachments/resume.pdf">resumé</a>.</p>
+        </aside>
+        <aside id="social-links" class="dark-background round-bottom border-all">
+          <div class="social-link"><a href="mailto:joel.verhagen@gmail.com"><img width="32" height="32" title="Email" src="/img/email.png" alt="Email" /></a></div>
+          <div class="social-link"><a href="https://www.github.com/joelverhagen"><img width="32" height="32" title="GitHub" src="/img/github.png" alt="GitHub" /></a></div>
+          <div class="social-link"><a href="https://www.twitter.com/joelverhagen"><img width="32" height="32" title="Twitter" src="/img/twitter.png" alt="Twitter" /></a></div>
+          <div class="social-link"><a href="http://www.last.fm/user/joelverhagen"><img width="32" height="32" title="Last.fm" src="/img/lastfm.png" alt="Last.fm" /></a></div>
+        </aside>
+      </div> 
+
+      <div id="main-column">
+        <section id="post-meta" class="dark-background round-top border-top">
+    <div class="post-meta-field"><a href="/"><b>back to post index</b></a></div>
+    <div class="post-meta-field"><b>Posted:</b> 2013-12-29</div>
+    <div class="post-meta-field-last"><b>Category:</b> Snippets</div>
+</section>
+<section id="content" class="light-background border-top">
+    <h1>Visiting the DOM with CefGlue</h1>
+     
+    <h2>tl;dr</h2>
+
+<p>Take a look at <a href="/attachments/blog/2013/12/visiting-the-dom-with-cefglue/CefGlueDomVisitor.zip">the whole example project</a>. I wrote it to be as self-explanatory as possible. This code uses the same versions of all of the dependencies as my <a href="/blog/2013/12/headless-chromium-in-c-with-cefglue/">previous CEF post</a>.</p>
+
+<h2>Instructions</h2>
+
+<p><strong>This post is a follow-up on <a href="/blog/2013/12/headless-chromium-in-c-with-cefglue/">a previous post</a>.</strong> If you are not familiar with CefGlue, then you should probably go read that post first!</p>
+
+<p><a href="/blog/2013/12/headless-chromium-in-c-with-cefglue/#comment-1175654010">A commenter</a> on my previous CefGlue post mentioned that the example I linked to about visiting the WebKit DOM (i.e. the actual in-memory tree) was not very helpful. Well, maybe there&#39;s something I can do about it! I whipped together a fun little demo which dumps the top 30 <a href="https://news.ycombinator.com">Hacker News</a> titles to a text file.</p>
+
+<p>The main difficulty when accessing a rendered page&#39;s DOM is that you can only do so in the same process as the associated renderer for that page. Remember, Chromium (and by extension, CEF and CefGlue) use multiple processes to run the browser. Therefore, the basic flow that you will have to follow is:</p>
+
+<ol>
+<li>Send a <code class="inline">CefProcessMessage</code> to the renderer process.</li>
+<li>Recieve the message in the render process.</li>
+<li>Point a <code class="inline">CefDomVisitor</code> to a <code class="inline">CefFrame</code>.</li>
+</ol>
+
+<h2>Send the Message</h2>
+
+<p>To send a message to a renderer process, you need a reference to a <code class="inline">CefBrowser</code> instance. This can be easily obtained from the <code class="inline">OnLoadEnd</code> callback in your <code class="inline">CefLoadHandler</code> subclass. Remember, you inject this specific handler in your <code class="inline">CefClient</code> subclass.</p>
+
+<p>This will basically get the ball rolling by queuing another process to get&#39;r&#39;done.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span></span><span class="k">internal</span> <span class="k">class</span> <span class="nc">DemoCefLoadHandler</span> <span class="p">:</span> <span class="n">CefLoadHandler</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnLoadEnd</span><span class="p">(</span><span class="n">CefBrowser</span> <span class="n">browser</span><span class="p">,</span> <span class="n">CefFrame</span> <span class="n">frame</span><span class="p">,</span> <span class="kt">int</span> <span class="n">httpStatusCode</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">browser</span><span class="p">.</span><span class="n">SendProcessMessage</span><span class="p">(</span>
+            <span class="n">CefProcessId</span><span class="p">.</span><span class="n">Renderer</span><span class="p">,</span>
+            <span class="n">CefProcessMessage</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="s">&quot;GetHackerNewsTitles&quot;</span><span class="p">)</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Note the <code class="inline">CefProcessId.Renderer</code> bit. This directs the destination of the message.</p>
+
+<h2>Recieve the Message</h2>
+
+<p>To recieve the message, you need to override the <code class="inline">GetRenderProcessHandler</code> method on your <code class="inline">CefApp</code> subclass. The method requires that a <code class="line">CefRenderProcessHandler</code> is returned. This means you need to create your own subclass and override the <code class="inline">OnProcessMessageReceived</code> method.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span></span><span class="k">internal</span> <span class="k">class</span> <span class="nc">DemoCefApp</span> <span class="p">:</span> <span class="n">CefApp</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">DemoCefRenderProcessHandler</span> <span class="n">_renderProcessHandler</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">DemoCefApp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">_renderProcessHandler</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DemoCefRenderProcessHandler</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">override</span> <span class="n">CefRenderProcessHandler</span> <span class="nf">GetRenderProcessHandler</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_renderProcessHandler</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">internal</span> <span class="k">class</span> <span class="nc">DemoCefRenderProcessHandler</span> <span class="p">:</span> <span class="n">CefRenderProcessHandler</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">OnProcessMessageReceived</span><span class="p">(</span><span class="n">CefBrowser</span> <span class="n">browser</span><span class="p">,</span> <span class="n">CefProcessId</span> <span class="n">sourceProcess</span><span class="p">,</span> <span class="n">CefProcessMessage</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// this code gets run in the renderer process</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2>Visit the DOM</h2>
+
+<p>Inside the <code class="inline">OnProcessMessageReceived</code> method, point a <code class="inline">CefDomVisitor</code> instance to a frame. In most cases, you will be pointing the visitor to the main frame (<code class="inline">browser.GetMainFrame()</code>)</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span></span><span class="k">internal</span> <span class="k">class</span> <span class="nc">DemoCefRenderProcessHandler</span> <span class="p">:</span> <span class="n">CefRenderProcessHandler</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">OnProcessMessageReceived</span><span class="p">(</span><span class="n">CefBrowser</span> <span class="n">browser</span><span class="p">,</span> <span class="n">CefProcessId</span> <span class="n">sourceProcess</span><span class="p">,</span> <span class="n">CefProcessMessage</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;GetHackerNewsTitles&quot;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">CefFrame</span> <span class="n">mainFrame</span> <span class="p">=</span> <span class="n">browser</span><span class="p">.</span><span class="n">GetMainFrame</span><span class="p">();</span>
+            <span class="n">mainFrame</span><span class="p">.</span><span class="n">VisitDom</span><span class="p">(</span><span class="k">new</span> <span class="n">DemoCefDomVisitor</span><span class="p">());</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">internal</span> <span class="k">class</span> <span class="nc">DemoCefDomVisitor</span> <span class="p">:</span> <span class="n">CefDomVisitor</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Visit</span><span class="p">(</span><span class="n">CefDomDocument</span> <span class="n">document</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">File</span><span class="p">.</span><span class="n">WriteAllLines</span><span class="p">(</span>
+            <span class="s">&quot;HackerNewsTitles.txt&quot;</span><span class="p">,</span>
+            <span class="n">GetHackerNewsTitles</span><span class="p">(</span><span class="n">document</span><span class="p">.</span><span class="n">Root</span><span class="p">)</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">GetHackerNewsTitles</span><span class="p">(</span><span class="n">CefDomNode</span> <span class="n">node</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">IsHackerNewsTitle</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="k">yield</span> <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="n">FirstChild</span><span class="p">.</span><span class="n">InnerText</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">CefDomNode</span> <span class="n">child</span> <span class="p">=</span> <span class="n">node</span><span class="p">.</span><span class="n">FirstChild</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">child</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">string</span> <span class="n">title</span> <span class="k">in</span> <span class="n">GetHackerNewsTitles</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="k">yield</span> <span class="k">return</span> <span class="n">title</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">child</span> <span class="p">=</span> <span class="n">child</span><span class="p">.</span><span class="n">NextSibling</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="kt">bool</span> <span class="nf">IsHackerNewsTitle</span><span class="p">(</span><span class="n">CefDomNode</span> <span class="n">node</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">NodeType</span> <span class="p">==</span> <span class="n">CefDomNodeType</span><span class="p">.</span><span class="n">Element</span> <span class="p">&amp;&amp;</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">ElementTagName</span> <span class="p">==</span> <span class="s">&quot;TD&quot;</span> <span class="p">&amp;&amp;</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">HasAttribute</span><span class="p">(</span><span class="s">&quot;class&quot;</span><span class="p">)</span> <span class="p">&amp;&amp;</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">GetAttribute</span><span class="p">(</span><span class="s">&quot;class&quot;</span><span class="p">)</span> <span class="p">==</span> <span class="s">&quot;title&quot;</span> <span class="p">&amp;&amp;</span>
+            <span class="n">node</span><span class="p">.</span><span class="n">FirstChild</span><span class="p">.</span><span class="n">NextSibling</span> <span class="p">!=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2>Final Notes</h2>
+
+<p>I would recommend doing as much work as you can in the render process instead of relaying things back in forth between the process constantly. Although process messages are in-memory, there is still a cost (especially if you are sending large blobs of data).</p>
+
+<p>Also, remember you can use Visual Studio to debug the non-primary CEF processes by <a href="http://msdn.microsoft.com/en-us/library/3s68z0b3.aspx">manually attaching your debugger</a>.</p>
+
+
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = "joelverhagen";
+        var disqus_identifier = "/blog/2013/12/visiting-the-dom-with-cefglue";
+        var disqus_url = "https://www.joelverhagen.com//blog/2013/12/visiting-the-dom-with-cefglue/";
+        var disqus_title = "Visiting the DOM with CefGlue";
+
+        (function() {
+            var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+            dsq.src = "https://" + disqus_shortname + ".disqus.com/embed.js";
+            (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</section>
+
+        <footer class="dark-background round-bottom border-all">
+          <p>Design and content by <a href="/">Joel Verhagen</a>.</p>
+          <p>Copyright &copy; 2017.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-19716426-1', 'joelverhagen.com');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

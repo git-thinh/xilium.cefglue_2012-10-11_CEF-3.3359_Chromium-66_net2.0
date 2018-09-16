@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Headless Chromium in C# with CefGlue | Joel Verhagen</title>
+  <link rel="stylesheet" href="/css/normalize.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/pygments.css" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <div id="header-wrapper">
+    <header>
+      <h1><a href="/">Joel Verhagen</a></h1>
+      <p>a computer programming blog</p>
+    </header>
+  </div>
+  <div id="page">
+    <div id="main">
+      <div id="side-column">
+        <aside id="short-bio" class="light-background round-top border-top">
+          <a href="/"><img width="175" height="175" src="https://www.gravatar.com/avatar/c136b026be4668d46ce5eb4dee155df1?s=175" alt="Joel Verhagen" /></a>
+          <p>I am a software developer at Microsoft, working on <a href="https://www.nuget.org/">NuGet</a>, the .NET package manager.</p>
+          <p>I am currently employed full-time, but if you are interested in my work history or skill set, take a look at my <a href="/attachments/resume.pdf">resumé</a>.</p>
+        </aside>
+        <aside id="social-links" class="dark-background round-bottom border-all">
+          <div class="social-link"><a href="mailto:joel.verhagen@gmail.com"><img width="32" height="32" title="Email" src="/img/email.png" alt="Email" /></a></div>
+          <div class="social-link"><a href="https://www.github.com/joelverhagen"><img width="32" height="32" title="GitHub" src="/img/github.png" alt="GitHub" /></a></div>
+          <div class="social-link"><a href="https://www.twitter.com/joelverhagen"><img width="32" height="32" title="Twitter" src="/img/twitter.png" alt="Twitter" /></a></div>
+          <div class="social-link"><a href="http://www.last.fm/user/joelverhagen"><img width="32" height="32" title="Last.fm" src="/img/lastfm.png" alt="Last.fm" /></a></div>
+        </aside>
+      </div> 
+
+      <div id="main-column">
+        <section id="post-meta" class="dark-background round-top border-top">
+    <div class="post-meta-field"><a href="/"><b>back to post index</b></a></div>
+    <div class="post-meta-field"><b>Posted:</b> 2013-12-08</div>
+    <div class="post-meta-field-last"><b>Category:</b> Tutorials</div>
+</section>
+<section id="content" class="light-background border-top">
+    <h1>Headless Chromium in C# with CefGlue</h1>
+     
+    <h2>tl;dr</h2>
+
+<p>If you wanna skip all of the juicy details and take a look at my code, download my example project. It includes all of the dependencies, so you should be good to go. Just open <strong>OffScreenCefGlue.sln</strong> in Visual Studio. I tested the project in <strong>Visual Studio 2013</strong>, but 2010 and 2012 should work as well.</p>
+
+<p><a href="/attachments/blog/2013/12/headless-chromium-in-c-with-cefglue/OffScreenCefGlue.zip">OffScreenCefGlue.zip</a></p>
+
+<h2>Motivation</h2>
+
+<p>If you&#39;re interesting in screen scraping or web crawling, you&#39;ll probably agree with me that simple HTML parsing libraries (like <a href="http://htmlagilitypack.codeplex.com/">HtmlAgilityPack</a> and <a href="https://github.com/jamietre/CsQuery">CsQuery</a> in C#) don&#39;t always cut it. For example, you&#39;ll have a hard time detecting any changes to the DOM made by JavaScript after page load. Good luck crawling those newfangled <a href="http://en.wikipedia.org/wiki/Single-page_application">single-page web applications</a> without spending hours reverse engineering their AJAX endpoints. Also, these libraries typically don&#39;t handle broken HTML as well as a web browser.</p>
+
+<p>This problem got me to thinking... why not use the browser itself for HTML parsing? I spent a couple of days looking around the internet for different ways to use a Real Life browser in my code. I immediately realized I didn&#39;t want a solution that requires interaction with real windows (through mouse movements and other shenanigans). Ideally, I would like to be able to access the actual DOM in memory that the browser uses to render the webpage and keep track of page state Also, I would like the tool to be usable in a non-desktop environment (i.e. headless).</p>
+
+<p>My first attempt was using Qt&#39;s WebKit bindings, but this solution had two problems:</p>
+
+<ol>
+<li><a href="https://github.com/qt/qtwebkit/blob/4ef1b438ba70b629655fe8e0eec0554968503f34/Source/WebKit/qt/Api/qwebelement.cpp#L157-L165">Only HTML elements are easily accessible</a> (no text nodes).</li>
+<li><a href="http://blog.qt.io/blog/2013/09/12/introducing-the-qt-webengine/">Qt is moving away from WebKit for Qt 5.3</a> (aside: the replacement will be Chromium, called <a href="http://qt-project.org/wiki/QtWebEngine">QtWebEngine</a>).</li>
+</ol>
+
+<p>Since Qt and <a href="http://blog.chromium.org/2013/04/blink-rendering-engine-for-chromium.html">Google</a> are both moving away from WebKit, I figured I would give Chromium (the open source part of Chrome) a try. Much to my joy, I found project called <a href="http://code.google.com/p/chromiumembedded/">Chromium Embedded Framework (CEF)</a> which focuses on embedding Chromium in other software. The greatest part about this project is that you don&#39;t have to download the gigabytes and gigabytes required for a full Chromium source tree... because would make that mistake, right? *cough*</p>
+
+<p>The primary use-case for CEF is embedding Chromium into the GUI of other projects (Chromium is a Real Life browser after all), but it also supports off-screen rendering. Essentially, this means CEF can render the visuals of a page to a block of memory which can be subsequently copied to a user&#39;s own surface... or no where (hint: that&#39;s us!). Another big plus is that CEF has C# bindings!</p>
+
+<h2>Xilium.CefGlue</h2>
+
+<p><a href="http://xilium.bitbucket.org/cefglue/">Xilium.CefGlue</a> is one of the two available C# bindings for CEF. The other one is <a href="https://github.com/cefsharp/CefSharp">CefSharp</a>. CefSharp and CefGlue seem to be pretty similar, but I chose Xilium.CefGlue because I found it easier to get the demos up and running.</p>
+
+<p>It took me a while to figure out exactly how to use CefGlue without a window but I finally found a solution that works. Truth be told, I was stuck for the longest time on an unrelated problem: Visual Studio&#39;s hosting process for was making the secondary processes hang.</p>
+
+<p><strong>Note:</strong> I am using Xilium.CefGlue, also known as Xilium.CefGlue/3 which references CEF3 (multi-process Chromium). This is not to be confused with CefGlue/1. <a href="http://code.google.com/p/chromiumembedded/wiki/Architecture">More on CEF1 vs. CEF3</a>.</p>
+
+<p>To show you how to use CEF in a headless environment, follow these steps.</p>
+
+<h2>Getting the Dependencies</h2>
+
+<p>CefGlue works by loading the native CEF code (and other dependencies) at runtime. It runs some checks to make sure it is working with the correct version of CEF. </p>
+
+<h3>Get CefGlue</h3>
+
+<p>At the time of writing this article, the latest revision of CefGlue is <code class="inline">de605d27eab0</code>. The source can be easily downloaded from Bitbucket:</p>
+
+<p><a href="https://bitbucket.org/xilium/xilium.cefglue/get/de605d27eab09e7d2c0dffb9eba89dbe32b6ebef.zip">Xilium.CefGlue @ de605d27eab0</a></p>
+
+<h3>Get Chromium Embedded Framework (CEF)</h3>
+
+<p>The version of CEF associated with this revision of CefGlue is 3.1650.1522 (despite what the <a href="http://xilium.bitbucket.org/cefglue/">CefGlue webpage</a> says). It seems that the 32-bit version is the supported version. I have not tried the 64-bit. A build of the proper CEF version can be downloaded from Adobe&#39;s great <a href="http://cefbuilds.com/">CEF 3 Builds</a> website:</p>
+
+<p><a href="https://cefbuilds.s3.amazonaws.com/1650/win/31.0.1650.39/cef_binary_3.1650.1522_windows32.7z">CEF 3.1650.1522, Windows 32-bit</a></p>
+
+<p>If you want use the latest version of CefGlue, take a look at <a href="https://bitbucket.org/xilium/xilium.cefglue/src/tip/CefGlue/Interop/version.g.cs"><strong>version.g.cs</strong></a> in the Xilium.CefGlue repository to find the associated CEF version:</p>
+
+<ul>
+<li><code class="inline">CEF_REVISION</code> refers to the revision number (e.g. <strong>1522</strong> in 3.1650.1522).</li>
+<li><code class="inline">CHROME<em>VERSION</em>BUILD</code> refers to the minor number (e.g. <strong>1650</strong> in 3.1650.1522).</li>
+</ul>
+
+<h2>Prepare the Dependencies</h2>
+
+<h3>Build CefGlue</h3>
+
+<p>CEF comes pre-built but you&#39;ll have to build CefGlue on your own. This is really easy.</p>
+
+<ol>
+<li>Extract the Xilium.CefGlue source that you downloaded above.</li>
+<li>Open <strong>Xilium.CefGlue.sln</strong> in Visual Studio. I used Visual Studio 2013.</li>
+<li>Change the solution configuration to <strong>Release</strong>.</li>
+<li>Change the solution platform to <strong>x86</strong>.</li>
+<li>Build the solution. You&#39;ll notice some build failures because the <code class="inline">CefGlue.Demo.GtkSharp</code> doesn&#39;t have all of it&#39;s dependencies. That&#39;s okay. All you need is the output from the <code class="inline">CefGlue</code> project.</li>
+</ol>
+
+<h3>Extract CEF</h3>
+
+<p>First, extract the CEF. If you downloaded the .7z file, you need to use <a href="http://www.7-zip.org/">7-Zip</a>. The CEF binary distribution comes with a lot of different files. For simplicity, you&#39;ll need the following:</p>
+
+<ul>
+<li>The entire contents of the <strong>Resources</strong> directory.</li>
+<li>The entire contents of the <strong>Release</strong>, except for <strong>libcef.lib</strong>.</li>
+</ul>
+
+<p>All of these files need to be placed in the same directory as the .NET executable using CefGlue (i.e. <strong>Xilium.CefGlue.dll</strong>).</p>
+
+<p>If you want to trim down the dependencies, look at CEF&#39;s <a href="http://code.google.com/p/chromiumembedded/source/browse/trunk/cef3/tools/distrib/win/README.redistrib.txt">README.txt</a>.</p>
+
+<h3>(optional) Test CefGlue</h3>
+
+<p>If you want to make sure that your CefGlue build is working, you can try running the <code class="inline">CefGlue.Demo.WinForms</code> project. But first, you need to put CEF itself in place!</p>
+
+<ol>
+<li>Copy all of the files mentioned in the <strong>Extract CEF</strong> section above into the output directory:
+<code class="inline">xilium-xilium.cefglue-de605d27eab0\CefGlue.Demo.WinForms\bin\x86\Release</code></li>
+<li>Run <strong>Xilium.CefGlue.Demo.WinForms.exe</strong>.</li>
+</ol>
+
+<p>You should see a browser-lookin&#39; thing. With really crappy UI. Clearly written by an engineer.</p>
+
+<h2>Using Headless CefGlue</h2>
+
+<p>Before you can start coding, get your project ready.</p>
+
+<ol>
+<li>Create a C# console application project in Visual Studio.</li>
+<li><strong>Important:</strong> <a href="http://msdn.microsoft.com/en-us/library/ms185330.aspx">disable Visual Studio hosting process</a>. I had a lot of trouble getting the <code class="inline">CefBrowser</code> instances to work while this feature was enabled.</li>
+<li>Reference the <strong>Xilium.CefGlue.dll</strong> assembly that you build.
+
+<ol>
+<li>Right-click on <strong>References</strong> in your solution explorer.</li>
+<li>Click <strong>Add Reference...</strong></li>
+<li>Depending your version of Visual Studio, browse for an assembly and then select the <strong>Xilium.CefGlue.dll</strong> assembly that you built.</li>
+</ol></li>
+<li>Please all of the CEF dependencies (as mentioned in <strong>Extract CEF</strong> above) in your projects output folder.</li>
+</ol>
+
+<p>Now we&#39;re ready to go. Here is a snippet of code that will show you how to use CEF off-screen (i.e. headless, no UI). For the sake of this example, I wrote a little console application that saves a screenshot of Reddit&#39;s front page. I&#39;ve heavily commented the code of the <code class="inline">Main</code> to explain what everything is doing. For the full project with all dependencies, download my example project:</p>
+
+<p><a href="/attachments/blog/2013/12/headless-chromium-in-c-with-cefglue/OffScreenCefGlue.zip">OffScreenCefGlue.zip</a></p>
+
+<p>It is relatively simple at this point to <a href="https://groups.google.com/forum/#!topic/cefglue/dr2kYfoovZI">look at the DOM</a>, run arbitrary JavaScript, dump the source for a page, or do whatever else you want for screen scraping or web crawling.</p>
+
+<p>Happy hacking!</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span></span><span class="k">internal</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Load CEF. This checks for the correct CEF version.</span>
+        <span class="n">CefRuntime</span><span class="p">.</span><span class="n">Load</span><span class="p">();</span>
+
+        <span class="c1">// Start the secondary CEF process.</span>
+        <span class="kt">var</span> <span class="n">cefMainArgs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CefMainArgs</span><span class="p">(</span><span class="k">new</span> <span class="kt">string</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+        <span class="kt">var</span> <span class="n">cefApp</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DemoCefApp</span><span class="p">();</span>
+
+        <span class="c1">// This is where the code path divereges for child processes.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">CefRuntime</span><span class="p">.</span><span class="n">ExecuteProcess</span><span class="p">(</span><span class="n">cefMainArgs</span><span class="p">,</span> <span class="n">cefApp</span><span class="p">)</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">Error</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Could not the secondary process.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Settings for all of CEF (e.g. process management and control).</span>
+        <span class="kt">var</span> <span class="n">cefSettings</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CefSettings</span>
+        <span class="p">{</span>
+            <span class="n">SingleProcess</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+            <span class="n">MultiThreadedMessageLoop</span> <span class="p">=</span> <span class="k">true</span>
+        <span class="p">};</span>
+
+        <span class="c1">// Start the browser process (a child process).</span>
+        <span class="n">CefRuntime</span><span class="p">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">cefMainArgs</span><span class="p">,</span> <span class="n">cefSettings</span><span class="p">,</span> <span class="n">cefApp</span><span class="p">);</span>
+
+        <span class="c1">// Instruct CEF to not render to a window at all.</span>
+        <span class="n">CefWindowInfo</span> <span class="n">cefWindowInfo</span> <span class="p">=</span> <span class="n">CefWindowInfo</span><span class="p">.</span><span class="n">Create</span><span class="p">();</span>
+        <span class="n">cefWindowInfo</span><span class="p">.</span><span class="n">SetAsOffScreen</span><span class="p">(</span><span class="n">IntPtr</span><span class="p">.</span><span class="n">Zero</span><span class="p">);</span>
+
+        <span class="c1">// Settings for the browser window itself (e.g. enable JavaScript?).</span>
+        <span class="kt">var</span> <span class="n">cefBrowserSettings</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CefBrowserSettings</span><span class="p">();</span>
+
+        <span class="c1">// Initialize some the cust interactions with the browser process.</span>
+        <span class="c1">// The browser window will be 1280 x 720 (pixels).</span>
+        <span class="kt">var</span> <span class="n">cefClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DemoCefClient</span><span class="p">(</span><span class="m">1280</span><span class="p">,</span> <span class="m">720</span><span class="p">);</span>
+
+        <span class="c1">// Start up the browser instance.</span>
+        <span class="n">CefBrowserHost</span><span class="p">.</span><span class="n">CreateBrowser</span><span class="p">(</span>
+            <span class="n">cefWindowInfo</span><span class="p">,</span>
+            <span class="n">cefClient</span><span class="p">,</span>
+            <span class="n">cefBrowserSettings</span><span class="p">,</span>
+            <span class="s">&quot;http://www.reddit.com/&quot;</span><span class="p">);</span>
+
+        <span class="c1">// Hang, to let the browser to do its work.</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Press a key at any time to end the program.&quot;</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+
+        <span class="c1">// Clean up CEF.</span>
+        <span class="n">CefRuntime</span><span class="p">.</span><span class="n">Shutdown</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = "joelverhagen";
+        var disqus_identifier = "/blog/2013/12/headless-chromium-in-c-with-cefglue";
+        var disqus_url = "https://www.joelverhagen.com//blog/2013/12/headless-chromium-in-c-with-cefglue/";
+        var disqus_title = "Headless Chromium in C# with CefGlue";
+
+        (function() {
+            var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+            dsq.src = "https://" + disqus_shortname + ".disqus.com/embed.js";
+            (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</section>
+
+        <footer class="dark-background round-bottom border-all">
+          <p>Design and content by <a href="/">Joel Verhagen</a>.</p>
+          <p>Copyright &copy; 2017.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-19716426-1', 'joelverhagen.com');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>
