@@ -24,18 +24,18 @@ namespace demo
             };
             browser.Parent = this;
             browser.BrowserCreated += (se, ev) => {
-                browser.Browser.GetMainFrame().LoadUrl("https://google.com.vn");
+                //browser.Browser.GetMainFrame().LoadUrl("https://google.com.vn");
                 //browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
                 //browser.Browser.Reload();
                 //browser.Browser.GetMainFrame().LoadUrl("about:blank");
-                //browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
+                browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
                 //Btn_Click(btn, new EventArgs() { });
             };
 
-            btn = new Button() { Text = "Test" };
-            btn.Click += Btn_Click;
-            this.Controls.Add(btn);
-            btn.BringToFront();
+            //btn = new Button() { Text = "Test" };
+            //btn.Click += Btn_Click;
+            //this.Controls.Add(btn);
+            //btn.BringToFront();
         }
 
         private void Btn_Click(object sender, EventArgs e)

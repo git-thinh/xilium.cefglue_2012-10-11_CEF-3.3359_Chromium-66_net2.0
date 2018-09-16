@@ -143,3 +143,7 @@ Debugx86/VideoDecodeStats/CURRENT
 Debugx86/VideoDecodeStats/000003.log
 .vs/Xilium.CefGlue/v14/.suo
 Debugx86/demo.pdb
+demo/obj/Debug/demo.pdb
+demo/obj/Debug/demo.exe
+demo/obj/Debug/demo.pdb
+demo/obj/Debug/demo.exe
