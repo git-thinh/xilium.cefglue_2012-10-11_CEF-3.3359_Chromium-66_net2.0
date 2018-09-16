@@ -12,6 +12,7 @@ namespace demo
     public partial class fApp : Form
     {
         private CefWebBrowser browser;
+        Button btn;
 
         public fApp()
         {
@@ -22,28 +23,39 @@ namespace demo
                 Dock = DockStyle.Fill
             };
             browser.Parent = this;
-
-            Button btn = new Button() { Text = "Test" };
-            btn.Click += (se, ev) => {
-                //browser.Browser.GetMainFrame().LoadUrl(testFileUri.ToString());
-                //browser.Browser.GetMainFrame().LoadUrl("https://google.com.vn");
-                browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
-
-                //Console.WriteLine("Test file loaded.");
-
-                //// wait a bit
-                //for (int i = 0; i < 25; ++i)
-                //{
-                //    Application.DoEvents();
-                //    System.Threading.Thread.Sleep(10);
-                //}
+            browser.BrowserCreated += (se, ev) => {
+                browser.Browser.GetMainFrame().LoadUrl("https://google.com.vn");
+                //browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
+                //browser.Browser.Reload();
+                //browser.Browser.GetMainFrame().LoadUrl("about:blank");
+                //browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
+                //Btn_Click(btn, new EventArgs() { });
             };
+
+            btn = new Button() { Text = "Test" };
+            btn.Click += Btn_Click;
             this.Controls.Add(btn);
             btn.BringToFront();
         }
 
-        private void fApp_Load(object sender, EventArgs e)
+        private void Btn_Click(object sender, EventArgs e)
         {
+            //browser.Browser.GetMainFrame().LoadUrl(testFileUri.ToString());
+            //browser.Browser.GetMainFrame().LoadUrl("https://google.com.vn");
+            browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
+
+            //Console.WriteLine("Test file loaded.");
+
+            //// wait a bit
+            //for (int i = 0; i < 25; ++i)
+            //{
+            //    Application.DoEvents();
+            //    System.Threading.Thread.Sleep(10);
+            //}
+        }
+
+        private void fApp_Load(object sender, EventArgs e)
+        { 
         }
     }
 }
