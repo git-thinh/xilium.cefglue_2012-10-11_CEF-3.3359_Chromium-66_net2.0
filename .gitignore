@@ -147,3 +147,6 @@ demo/obj/Debug/demo.pdb
 demo/obj/Debug/demo.exe
 demo/obj/Debug/demo.pdb
 demo/obj/Debug/demo.exe
+CefGlue/obj/Release/CefGlue.csprojResolveAssemblyReference.cache
+CefGlue/obj/Release/CefGlue.csproj.FileListAbsolute.txt
+CefGlue/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache

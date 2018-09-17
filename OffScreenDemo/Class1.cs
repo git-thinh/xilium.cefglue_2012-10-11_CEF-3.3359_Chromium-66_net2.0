@@ -36,7 +36,7 @@ namespace OffScreenDemo
 
     internal class DemoCefLoadHandler : CefLoadHandler
     {
-        protected virtual void OnLoadStart(CefBrowser browser, CefFrame frame, CefTransitionType transitionType)
+        protected override void OnLoadStart(CefBrowser browser, CefFrame frame, CefTransitionType transitionType)
         //protected override void OnLoadStart(CefBrowser browser, CefFrame frame)
         {
             // A single CefBrowser instance can handle multiple requests
