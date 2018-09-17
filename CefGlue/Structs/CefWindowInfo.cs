@@ -177,6 +177,6 @@
         {
             WindowlessRenderingEnabled = true;
             ParentHandle = parentHandle;
-        }
+        } 
     }
 }

@@ -24,12 +24,13 @@ namespace demo
             };
             browser.Parent = this;
             browser.BrowserCreated += (se, ev) => {
-                //browser.Browser.GetMainFrame().LoadUrl("https://google.com.vn");
+                browser.Browser.GetMainFrame().LoadUrl("https://google.com.vn");
                 //browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
                 //browser.Browser.Reload();
                 //browser.Browser.GetMainFrame().LoadUrl("about:blank");
-                browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
+                //browser.Browser.GetMainFrame().LoadUrl("http://localhost:60000/index.html");
                 //Btn_Click(btn, new EventArgs() { });
+                
             };
 
             //btn = new Button() { Text = "Test" };
@@ -55,7 +56,9 @@ namespace demo
         }
 
         private void fApp_Load(object sender, EventArgs e)
-        { 
+        {
+            this.Width = 1024;
+            this.Height = 600;
         }
     }
 }

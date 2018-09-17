@@ -77,7 +77,7 @@
         public static void Load()
         {
             Load(null);
-        }
+        } 
 
         /// <summary>
         /// Loads CEF runtime from specified path.
@@ -104,8 +104,10 @@
 
         private static void LoadLibraryWindows(string path)
         {
+            string file = System.IO.Path.Combine(path, "libcef.dll");
+
             Xilium.CefGlue.Platform.Windows.NativeMethods.LoadLibraryEx(
-                System.IO.Path.Combine(path, "libcef.dll"),
+                file,
                 IntPtr.Zero,
                 Xilium.CefGlue.Platform.Windows.LoadLibraryFlags.LOAD_WITH_ALTERED_SEARCH_PATH
                 );

@@ -29,7 +29,12 @@ namespace demo
             //////};
 
 
-            CefRuntime.Load();
+            string execDir1 = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string execDir2 = Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetEntryAssembly().CodeBase).LocalPath);
+
+            execDir2 = Path.Combine(execDir2, "Debugx86") + @"\";
+
+            CefRuntime.Load(execDir2);
 
             var settings = new CefSettings();
             //settings.MultiThreadedMessageLoop = MultiThreadedMessageLoop = CefRuntime.Platform == CefRuntimePlatform.Windows;            
@@ -37,7 +42,8 @@ namespace demo
             settings.SingleProcess = true;
             settings.LogSeverity = CefLogSeverity.Verbose;
             settings.LogFile = "cef.log";
-            settings.ResourcesDirPath = Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetEntryAssembly().CodeBase).LocalPath);
+            //settings.ResourcesDirPath = Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetEntryAssembly().CodeBase).LocalPath);
+            settings.ResourcesDirPath = execDir2;
             settings.RemoteDebuggingPort = 20480;
             settings.NoSandbox = true;
 

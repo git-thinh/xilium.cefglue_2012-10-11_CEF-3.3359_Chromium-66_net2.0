@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E776C91-93D6-45C3-8DC9-9AE56A7B7C1C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>demo</RootNamespace>
+    <AssemblyName>demo</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\CefGlueDomVisitor\bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xilium.CefGlue, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6235298024de30d5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Xilium.CefGlue\Xilium.CefGlue.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CefGlue.WindowsForms\Action.cs" />
+    <Compile Include="CefGlue.WindowsForms\AddressChangedEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\BeforePopupEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\CefWebBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CefGlue.WindowsForms\CefWebClient.cs" />
+    <Compile Include="CefGlue.WindowsForms\CefWebDisplayHandler.cs" />
+    <Compile Include="CefGlue.WindowsForms\CefWebLifeSpanHandler.cs" />
+    <Compile Include="CefGlue.WindowsForms\CefWebLoadHandler.cs" />
+    <Compile Include="CefGlue.WindowsForms\CefWebRequestHandler.cs" />
+    <Compile Include="CefGlue.WindowsForms\ConsoleMessageEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\LoadEndEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\LoadErrorEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\LoadingStateChangeEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\LoadStartEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\NativeMethods.cs" />
+    <Compile Include="CefGlue.WindowsForms\PluginCrashedEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\RenderProcessTerminatedEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\SetWindowPosFlags.cs" />
+    <Compile Include="CefGlue.WindowsForms\StatusMessageEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\TitleChangedEventArgs.cs" />
+    <Compile Include="CefGlue.WindowsForms\TooltipEventArgs.cs" />
+    <Compile Include="fApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

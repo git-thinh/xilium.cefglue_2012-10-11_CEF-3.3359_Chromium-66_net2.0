@@ -1,0 +1,6 @@
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlueDomVisitor\demo\obj\Debug\demo.Properties.Resources.resources
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlueDomVisitor\demo\obj\Debug\demo.csproj.GenerateResource.Cache
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlueDomVisitor\CefGlueDomVisitor\bin\x86\Debug\demo.exe
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlueDomVisitor\CefGlueDomVisitor\bin\x86\Debug\demo.pdb
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlueDomVisitor\demo\obj\Debug\demo.exe
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlueDomVisitor\demo\obj\Debug\demo.pdb
