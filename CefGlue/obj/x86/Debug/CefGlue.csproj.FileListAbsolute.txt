@@ -1,0 +1,5 @@
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue\bin\x86\Debug\Xilium.CefGlue.dll
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue\bin\x86\Debug\Xilium.CefGlue.pdb
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue\bin\x86\Debug\Xilium.CefGlue.xml
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue\obj\x86\Debug\Xilium.CefGlue.dll
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue\obj\x86\Debug\Xilium.CefGlue.pdb

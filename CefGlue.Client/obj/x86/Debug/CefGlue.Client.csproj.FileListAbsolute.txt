@@ -1,0 +1,8 @@
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\Debugx86\Xilium.CefGlue.Client.exe.config
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\Debugx86\Xilium.CefGlue.Client.exe
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\Debugx86\Xilium.CefGlue.Client.pdb
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.Client\obj\x86\Debug\CefGlue.Client.csprojResolveAssemblyReference.cache
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.Client\obj\x86\Debug\Xilium.CefGlue.Client.MainForm.resources
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.Client\obj\x86\Debug\CefGlue.Client.csproj.GenerateResource.Cache
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.Client\obj\x86\Debug\Xilium.CefGlue.Client.exe
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.Client\obj\x86\Debug\Xilium.CefGlue.Client.pdb

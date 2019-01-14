@@ -1,0 +1,8 @@
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.WindowsForms\bin\x86\Debug\Xilium.CefGlue.WindowsForms.dll
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.WindowsForms\bin\x86\Debug\Xilium.CefGlue.WindowsForms.pdb
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.WindowsForms\bin\x86\Debug\Xilium.CefGlue.dll
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.WindowsForms\bin\x86\Debug\Xilium.CefGlue.pdb
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.WindowsForms\bin\x86\Debug\Xilium.CefGlue.xml
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.WindowsForms\obj\x86\Debug\CefGlue.WindowsForms.csprojResolveAssemblyReference.cache
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.WindowsForms\obj\x86\Debug\Xilium.CefGlue.WindowsForms.dll
+G:\xilium.cefglue_2012-10-11_CEF-3.3359_Chromium-66_net2.0\CefGlue.WindowsForms\obj\x86\Debug\Xilium.CefGlue.WindowsForms.pdb

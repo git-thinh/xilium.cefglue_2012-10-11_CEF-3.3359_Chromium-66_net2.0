@@ -15,18 +15,18 @@ namespace demo
         [STAThread]
         static int Main()
         {
-            //////string execDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            //////CefRuntime.Load();
-            //////CefSettings settings = new CefSettings
-            //////{
-            //////    SingleProcess = System.Diagnostics.Debugger.IsAttached,
-            //////    MultiThreadedMessageLoop = true,
-            //////    LogSeverity = CefLogSeverity.Verbose,
-            //////    LogFile = "cef.log",
-            //////    //AutoDetectProxySettingsEnabled = true,        
-            //////    ResourcesDirPath = execDir,
-            //////    //BrowserSubprocessPath = Path.Combine(execDir, "cefclient.exe"),
-            //////};
+            //string execDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //CefRuntime.Load();
+            //CefSettings settings = new CefSettings
+            //{
+            //    SingleProcess = System.Diagnostics.Debugger.IsAttached,
+            //    MultiThreadedMessageLoop = true,
+            //    LogSeverity = CefLogSeverity.Verbose,
+            //    LogFile = "cef.log",
+            //    //AutoDetectProxySettingsEnabled = true,        
+            //    ResourcesDirPath = execDir,
+            //    //BrowserSubprocessPath = Path.Combine(execDir, "cefclient.exe"),
+            //};
 
 
             string execDir1 = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -44,7 +44,7 @@ namespace demo
             settings.LogFile = "cef.log";
             //settings.ResourcesDirPath = Path.GetDirectoryName(new Uri(System.Reflection.Assembly.GetEntryAssembly().CodeBase).LocalPath);
             settings.ResourcesDirPath = execDir2;
-            settings.RemoteDebuggingPort = 20480;
+            //settings.RemoteDebuggingPort = 20480;
             settings.NoSandbox = true;
 
             CefMainArgs mainArgs = new CefMainArgs(new string[] { });
@@ -58,9 +58,8 @@ namespace demo
             //////// guard if something wrong
             //////foreach (var arg in args) { if (arg.StartsWith("--type=")) { return -2; } }
 
-            //////CefRuntime.Initialize(mainArgs, settings, app);
+            //CefRuntime.Initialize(mainArgs, settings, app);
             CefRuntime.Initialize(mainArgs, settings, app, IntPtr.Zero);
-
 
             if (!settings.MultiThreadedMessageLoop)
             {
